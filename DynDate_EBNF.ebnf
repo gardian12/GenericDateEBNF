@@ -1,0 +1,27 @@
+//
+// Dynamic Date EBNF
+//
+// Normalized EBNF
+//
+
+
+
+DynamicDate   ::= ( Day ( Shift )? ) Sep ( Month ( Shift )? ) Sep ( Year ( Shift )? )
+
+Day           ::= ( DaySubst | [0-3] NumberDecimal )
+Month         ::= ( MonthSubst | [0-1] NumberDecimal )
+Year          ::= ( YearSubst | NumberDouble NumberDouble )
+
+Shift         ::= ( Plus | Minus ) NumberDouble
+
+NumberDouble  ::= NumberDecimal NumberDecimal
+
+NumberDecimal ::= [0-9]
+
+DaySubst      ::= 'DD'
+MonthSubst    ::= 'MM'
+YearSubst     ::= 'YYYY'
+
+Sep           ::= '.'
+Plus          ::= '+'
+Minus         ::= '-'
