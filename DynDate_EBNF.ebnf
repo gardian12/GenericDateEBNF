@@ -4,17 +4,35 @@
 
 
 
+/*
+  === start rule ===
+*/
+
 DynamicDate   ::= ( Day ( Shift )? ) Sep ( Month ( Shift )? ) Sep ( Year ( Shift )? )
 
-Day           ::= ( DaySubst | [0-3] NumberDecimal )
-Month         ::= ( MonthSubst | [0-1] NumberDecimal )
-Year          ::= ( YearSubst | NumberDouble NumberDouble )
 
-Shift         ::= ( Plus | Minus ) NumberDouble
+/*
+  === rules ===
+*/
 
-NumberDouble  ::= NumberDecimal NumberDecimal
+Day           ::= ( DaySubst | DayNumeral Digit )
 
-NumberDecimal ::= [0-9]
+Month         ::= ( MonthSubst | MonthNumeral Digit )
+
+Year          ::= ( YearSubst | DoubleDigit DoubleDigit )
+
+Shift         ::= ( Plus | Minus ) DoubleDigit
+
+DoubleDigit   ::= Digit Digit
+
+
+/*
+  === terminal symbols ===
+*/
+
+Digit         ::= [0-9]
+DayNumeral    ::= [0-3]
+MonthNumeral  ::= [0-1]
 
 DaySubst      ::= 'DD'
 MonthSubst    ::= 'MM'
